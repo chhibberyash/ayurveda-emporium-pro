@@ -30,11 +30,12 @@ function ThemeAdmin() {
   };
 
   const save = async () => {
-    const { error } = await supabase.from("theme_settings").update({ ...form, updated_at: new Date().toISOString() }).eq("id", 1);
+    const { error } = await supabase.from("theme_settings").upsert({ id: 1, ...form, updated_at: new Date().toISOString() });
     if (error) return toast.error(error.message);
-    toast.success("Theme saved");
+    toast.success("Theme saved — reloading");
     qc.invalidateQueries({ queryKey: ["theme-admin"] });
     preview();
+    setTimeout(() => window.location.reload(), 600);
   };
 
   return (
