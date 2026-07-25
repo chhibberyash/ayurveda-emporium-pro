@@ -27,16 +27,16 @@ export function ProductCard({ p, symbol }: { p: ProductCardData; symbol: string 
     else toast.success("Added to wishlist");
   };
   return (
-    <div className="group card-elegant overflow-hidden flex flex-col transition-transform hover:-translate-y-1">
+    <div className="group card-elegant overflow-hidden flex flex-col transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl">
       <Link to="/product/$slug" params={{ slug: p.slug }} className="block aspect-square bg-muted relative overflow-hidden">
         {p.image_url ? (
-          <img src={p.image_url} alt={p.name} className="w-full h-full object-cover" loading="lazy" />
+          <img src={p.image_url} alt={p.name} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" loading="lazy" />
         ) : (
           <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-secondary to-accent/20">
-            <Leaf className="h-12 w-12 text-primary/40" strokeWidth={1} />
+            <Leaf className="h-12 w-12 text-primary/40 transition-transform duration-500 group-hover:scale-125 group-hover:rotate-12" strokeWidth={1} />
           </div>
         )}
-        <button onClick={(e) => { e.preventDefault(); addWishlist(); }} className="absolute top-3 right-3 p-2 rounded-full bg-background/80 backdrop-blur hover:text-primary" aria-label="Wishlist">
+        <button onClick={(e) => { e.preventDefault(); addWishlist(); }} className="absolute top-3 right-3 p-2 rounded-full bg-background/80 backdrop-blur hover:text-primary transition-all hover:scale-110" aria-label="Wishlist">
           <Heart className="h-4 w-4" />
         </button>
       </Link>
