@@ -80,6 +80,7 @@
 
 @layer base {
   * { border-color: var(--color-border); }
+  html { scroll-behavior: smooth; }
   body {
     background-color: var(--color-background);
     color: var(--color-foreground);
@@ -92,6 +93,39 @@
     letter-spacing: -0.01em;
   }
 }
+
+@keyframes float-slow {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-12px) rotate(2deg); }
+}
+@keyframes float-slower {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-8px) rotate(-3deg); }
+}
+@keyframes tilt-breath {
+  0%, 100% { transform: rotate(-1deg) scale(1); }
+  50% { transform: rotate(1.5deg) scale(1.015); }
+}
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes fade-in-anim {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes steam {
+  0% { opacity: 0; transform: translateY(0) scale(1); }
+  40% { opacity: 0.5; }
+  100% { opacity: 0; transform: translateY(-60px) scale(1.6); }
+}
+
+@utility animate-float { animation: float-slow 6s ease-in-out infinite; }
+@utility animate-float-slower { animation: float-slower 8s ease-in-out infinite; }
+@utility animate-tilt-breath { animation: tilt-breath 9s ease-in-out infinite; }
+@utility animate-fade-up { animation: fade-up 0.9s ease-out both; }
+@utility animate-fade-in-slow { animation: fade-in-anim 1.2s ease-out both; }
+@utility animate-steam { animation: steam 5s ease-in-out infinite; }
 
 @utility container-page {
   margin-inline: auto;
